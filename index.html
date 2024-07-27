@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body class="league-spartan-fonsy">
+    <!-- <h1>Practicando JS</h1>
+    <h2>texto de prueba</h2>
+
+    <button>
+        Cambiar color
+    </button>
+    <hr>
+    <h1>Calculadorcita</h1> -->
+
+    <main class="container">
+        <div class="calculator">
+            <p id="preResult" class="hidden white"></p>
+            <div class="result">
+                <input type="text pattern=" [0-9]*" name="result" id="result" placeholder="0"
+                    class="white">
+            </div>
+
+            <div class="buttons ">
+
+                <div class="firstLine ">
+                    <button id="7" class="number">7</button>
+                    <button id="8" class="number">8</button>
+                    <button id="9" class="number">9</button>
+                    <button id="del" class="special white">DEL</button>
+                </div>
+                <div class="secline">
+                    <button id="4" class="number">4</button>
+                    <button id="5" class="number">5</button>
+                    <button id="6" class="number">6</button>
+                    <button id="+" class="operator">+</button>
+                </div>
+                <div class="terceraLinea">
+                    <button id="1" class="number">1</button>
+                    <button id="2" class="number">2</button>
+                    <button id="3" class="number">3</button>
+                    <button id="-" class="operator">-</button>
+                </div>
+                <div class="cuertaLinea">
+                    <button id="." class="special">.</button>
+                    <button id="0" class="number">0</button>
+                    <button id="/" class="operator">/</button>
+                    <button id="*" class="operator">x</button>
+                </div>
+
+                <div class="equalReset" id="equalReset">
+                    <button id="reset" class="special white">RESET</button>
+                    <button id="equal" class="special white red">=</button>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+
+    <script src="./script.js"></script>
+    <script src="./calculator.js"></script>
+</body>
+
+</html>
