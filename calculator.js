@@ -15,10 +15,14 @@ const elements = {
     igual: document.getElementById( 'equal' ),
 };
 
+
+
+
+
 let valor1 = '';
 let valor2 = '';
-let operacion = '';
-let resultado = '';
+let operacion = null;
+let resultado = null;
 let done = false;
 
 //* EVENTO PARA CAPTURAR LO QUE SE INTRODUCE POR EL TECLADO PERMITIENDO SOLO NUMEROS Y OPERADORES
@@ -39,44 +43,41 @@ inputResult.addEventListener( 'input', ( e ) => {
 
 
 //* EVENTO PARA CAPTURAR EL VALOR DE LOS BOTONES AL HACERLE CLICK
-// elements.numbers.forEach( element => {
-//     element.addEventListener( 'click', ( e ) => {
-//         // console.log( "OPERACION: ", operacion, done );
+elements.numbers.forEach( element => {
+    element.addEventListener( 'click', ( e ) => {
+       
+      
+        if ( done ) clearAll();
+        if ( !operacion && !done ) {
+            valor1 = inputResult.value += e.target.textContent;
+        } else {
+            valor2 = inputResult.value += e.target.textContent
+        }
+    } )
+} );
+
+
+// elements.numbers.forEach((button) => {
+//     button.addEventListener('click', (e) => {
+//         const value = e.target.textContent;
 //         if ( done ) clearAll();
 //         done = false
-
-//         if ( !operacion && !done ) {
-//             done = false;
-//             console.log( "Pero que carajo", done );
-//             valor1 = inputResult.value += e.target.textContent;
-//         } else {
-//             valor2 = inputResult.value += e.target.textContent
+//       if (valor1 && operacion) {
+//           valor2 += value;
+//           inputResult.value += value;
+//       } else {
+//           valor1 += value;
+//           inputResult.value += value
 //         }
-//     } )
-// } );
-
-
-elements.numbers.forEach((button) => {
-    button.addEventListener('click', (e) => {
-        const value = e.target.textContent;
-        console.log( value );
-        if ( done ) clearAll();
-        console.log( done );
-        done = false
-      if (valor1) {
-          valor2 += value;
-          inputResult.value += value;
-      } else {
-          valor1 += value;
-          inputResult.value += value
-      }
-    });
-  });
+//     });
+//   });
 
 
 //* EVENTOS DE LOS OPERADORES +-*/
 
 elements.operators.suma.addEventListener( 'click', () => {
+    console.log( 'RESULTADO', resultado );
+    ( resultado !== null ) ? valor1 = resultado : null
     if ( valor1 ) {
         // console.log( valor1 );
         operacion = '+';
@@ -121,13 +122,15 @@ elements.operators.division.addEventListener( 'click', () => {
 } );
 
 //* EVENTO DEL BOTON IGUAL
-elements.igual.addEventListener('click', () => {
+elements.igual.addEventListener( 'click', () => {
+    console.log({valor1, valor2,operacion});
     if (valor1 && valor2 && operacion) {
       resultado = realizarOperacion(valor1, valor2, operacion);
       preResult.textContent = `${valor1} ${operacion} ${valor2} = ${resultado}`;
         inputResult.value = resultado;
         done = true;
     }
+    console.log({valor1, valor2,operacion});
   });
 
 
@@ -139,6 +142,7 @@ elements.reset.addEventListener( 'click', clearAll );
 function clearAll () {
     valor1 = '';
     valor2 = '';
+    done = false;
     operacion = '';
     inputResult.value = '';
     inputResult.placeholder = 0;

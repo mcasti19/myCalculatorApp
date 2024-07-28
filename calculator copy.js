@@ -109,22 +109,8 @@ elements.reset.addEventListener( 'click', () => {
 } );
 //*FUNCIONES
 
-function suma ( a, b ) {
-    // console.log( 'Estoy sumando o no?' );
-    return inputResult.value = parseFloat( a ) + parseFloat( b );
-}
 
-function resta ( a, b ) {
-    // console.log( 'Estoy restando o no?' );
-    return inputResult.value = parseFloat( a ) - parseFloat( b );
-}
-
-function multiplication ( a, b ) {
-    // console.log( 'Estoy multiplicando o no?' );
-    return inputResult.value = parseFloat( a ) * parseFloat( b );
-}
-
-function division ( a, b ) {
-    // console.log( 'Estoy dividiando o no?' );
-    return inputResult.value = parseFloat( a ) / parseFloat( b );
-}
+function suma ( a, b ) {return inputResult.value = parseFloat( a ) + parseFloat( b );}
+function resta ( a, b ) {return inputResult.value = parseFloat( a ) - parseFloat( b );}
+function multiplication ( a, b ) {return inputResult.value = parseFloat( a ) * parseFloat( b );}
+function division ( a, b ) {return inputResult.value = parseFloat( a ) / parseFloat( b );}
