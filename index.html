@@ -8,17 +8,41 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <title>Calculator</title>
 </head>
 
-<body class="league-spartan-fonsy">
+<body class="">
 
     <main class="container">
         <div class="calculator">
+            <div class="header">
+                <h3 class="title">calc</h3>
+
+
+                <div class="theme">
+                    <small class="subTitle">THEME</small>
+                    <div class="selectors">
+                        <div class="labels">
+                            <label class='label_theme' htmlFor="theme-1">1</label>
+                            <label class='label_theme' htmlFor="theme-2">2</label>
+                            <label class='label_theme' htmlFor="theme-3">3</label>
+                        </div>
+
+                        <div class="theme-selector">
+                            <input type="radio" id="theme-1" name="theme" value="theme-1" checked>
+                            <label for="theme-1"></label>
+                            <input type="radio" id="theme-2" name="theme" value="theme-2">
+                            <label for="theme-2"></label>
+                            <input type="radio" id="theme-3" name="theme" value="theme-3">
+                            <label for="theme-3"></label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
             <p id="preResult" class="hidden white"></p>
             <div class="result">
-                <input type="text pattern=" [0-9]*" name="result" id="result" placeholder="0"
-                    class="white">
+                <input type="text pattern=" [0-9]*" name="result" id="result" placeholder="0" class="white">
             </div>
 
             <div class="buttons ">
@@ -42,23 +66,21 @@
                     <button id="-" class="operator">-</button>
                 </div>
                 <div class="cuertaLinea">
-                    <button id="punto" class="special">.</button>
+                    <button id="punto" class="number">.</button>
                     <button id="0" class="number">0</button>
                     <button id="/" class="operator">/</button>
                     <button id="*" class="operator">x</button>
                 </div>
 
                 <div class="equalReset" id="equalReset">
-                    <button id="reset" class="special white">RESET</button>
-                    <button id="equal" class="special white red">=</button>
+                    <button id="reset" class="special">RESET</button>
+                    <button id="equal" class="special">=</button>
                 </div>
 
             </div>
         </div>
     </main>
 
-
-    <script src="./script.js"></script>
     <script src="./calculator.js"></script>
 </body>
 

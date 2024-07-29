@@ -7,54 +7,146 @@
 }
 
 :root {
-    --very-dark-desaturated-blue-main: hsl(222, 26%, 31%);
-    --very-dark-desaturated-blue-toggle-background-keypad: hsl(223, 31%, 20%);
-    --very-dark-desaturated-blue-screen: hsl(224, 36%, 15%);
+    /* Theme 1*/
+    --background-very-dark-desaturated-blue-main: #3a4764;
+    --background-very-dark-desaturated-blue-toggle-background-keypad: #232c43;
+    --background-very-dark-desaturated-blue-screen: #182034;
 
-    --desaturated-dark-blue-key-background: hsl(225, 21%, 49%);
-    --desaturated-dark-blue-key-shadow: hsl(224, 28%, 35%);
+    --key-desaturated-dark-blue-key-background: #637097;
+    --key-desaturated-dark-blue-key-shadow: #404e72;
 
-    --red-key-background-toggle: hsl(6, 63%, 50%);
-    --dark-red-key-shadow: hsl(6, 70%, 34%);
+    --key-red-key-background-toggle: #d03f2f;
+    --key-dark-red-key-shadow: #93261a;
 
-    --light-grayish-orange-key-background: hsl(30, 25%, 89%);
-    --grayish-orange--key-shadow: hsl(28, 16%, 65%);
+    --key-light-grayish-orange-key-background: #eae3dc;
+    --key-grayish-orange--key-shadow: #b4a597;
 
-    --very-dark-grayish-blue: hsl(221, 14%, 31%);
-    --white: hsl(0, 0%, 100%);
+    --text-very-dark-grayish-blue: #444b5a;
+    --text-white: #ffffff;
 
-    --league-spartan-fonsy: "League Spartan", sans-serif;
-    ;
+
+    /* Theme 2*/
+    /* #### Backgrounds */
+    --Two-Light-gray-main-background: #e6e6e6;
+    --Two-Grayish-red-toggle-background-keypad-background: #d1cccc;
+    --Two-Very-light-gray-screen-background: #ededed;
+
+    /* Keys */
+    --Two-Dark-moderate-cyan-key-background: #377f86;
+    --Two-Very-dark-cyan-key-shadow: #1b5f65;
+    --Two-Orange-key-background-toggle: #ca5502;
+    --Two-Dark-orange-key-shadow: #893901;
+    --Two-Light-grayish-yellow-key-background: #e5e4e1;
+    --Two-Dark-grayish-orange-key-shadow: #a69d91;
+
+    /* Text */
+    --Two-Very-dark-grayish-yellow: #35352c;
+    --Two-White-text: #ffffff;
+
+
+    /* THEME 3 */
+    /* Backgrounds */
+    --three-Very-dark-violet-main-background: #160628;
+    --three-Very-dark-violet-toggle-background-keypad-background-screen-background: #1d0934;
+
+    /* Keys */
+    --three-Dark-violet-key-background: #58077d;
+    --three-Vivid-magenta-key-shadow: #bc15f4;
+    --three-Pure-cyan-key-background-toggle: #00e0d1;
+    --three-Soft-cyan-key-shadow: #6cf9f2;
+    --three-Very-dark-violet-key-background: #341c4f;
+    --three-Dark-magenta-key-shadow: #871c9c;
+
+    /* Text */
+    --three-Light-yellow: #ffe53d;
+    --three-Very-dark-blue: #1b2428;
+    --three-White-text: #ffffff;
 }
 
 body {
     height: 100vh;
     justify-content: center;
-    background-color: var(--very-dark-desaturated-blue-main);
+    background-color: var(--background-very-dark-desaturated-blue-main);
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 32px;
-
 }
 
 .container {
+    width: 90%;
+    max-width: 600px;
     padding: 20px;
     border-radius: 20px;
-    width: 90%;
     min-width: 325px;
 }
 
 .calculator {
     display: flex;
     flex-direction: column;
-    align-items: end;
-
+    gap: 1.5rem;
 }
 
-.calculator>*:not(:first-child, :last-child) {
-    margin-bottom: 20px;
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
+
+.theme {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: flex-end;
+}
+
+small,
+.labels {
+    font-size: 16px;
+}
+
+.labels {
+    display: flex;
+    justify-content: space-around;
+}
+
+.subTitle,
+.title,
+.labels {
+    color: var(--text-white);
+}
+
+.theme-selector {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    gap: 5px;
+    background-color: var(--background-very-dark-desaturated-blue-toggle-background-keypad);
+}
+
+
+.theme-selector input[type="radio"] {
+    display: none;
+}
+
+.theme-selector label {
+    display: block;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.theme-selector input[type="radio"]:checked+label {
+    background-color: var(--key-red-key-background-toggle);
+    color: #fff;
+}
+
 
 .hidden {
     min-width: 30%;
@@ -62,7 +154,8 @@ body {
     text-align: end;
     padding-right: 20px;
     font-size: 1rem;
-    opacity: 1;
+    opacity: 0.5;
+    margin-bottom: -30px;
 }
 
 .result {
@@ -70,9 +163,7 @@ body {
 }
 
 .result input {
-    /* width: 100%;
-    height: 85px; */
-    background-color: var(--very-dark-desaturated-blue-screen);
+    background-color: var(--background-very-dark-desaturated-blue-screen);
     padding: 10px;
     width: 100%;
     border: none;
@@ -81,16 +172,16 @@ body {
     padding-right: 20px;
     font-size: 2rem;
     border-radius: 8px;
+    color: white;
 }
 
 .buttons {
     width: 100%;
     display: grid;
     gap: 15px;
-    background-color: var(--very-dark-desaturated-blue-toggle-background-keypad);
+    background-color: var(--background-very-dark-desaturated-blue-toggle-background-keypad);
     padding: 15px;
     border-radius: 8px;
-    /* box-shadow: 0px 0px 5px gray; */
 }
 
 .firstLine,
@@ -110,21 +201,27 @@ body {
     width: 22%;
     min-height: 60px;
     font-size: 32px;
-    background-color: var(--light-grayish-orange-key-background);
-    color: var(--very-dark-grayish-blue);
-    box-shadow: 0px 3.5px 1px var(--grayish-orange--key-shadow);
+    background-color: var(--key-light-grayish-orange-key-background);
+    color: var(--text-very-dark-grayish-blue);
+    box-shadow: 0px 4.5px 0px var(--key-grayish-orange--key-shadow);
+}
+
+.number,
+.operator,
+.special:hover {
+    cursor: pointer;
 }
 
 #reset,
 #equal {
     min-width: 48%;
-
 }
 
 #reset,
 #del {
-    background-color: var(--desaturated-dark-blue-key-background);
-    box-shadow: 0px 3.5px 1px var(--desaturated-dark-blue-key-shadow);
+    background-color: var(--key-desaturated-dark-blue-key-background);
+    box-shadow: 0px 4.5px 0px var(--key-desaturated-dark-blue-key-shadow);
+    color: white;
 }
 
 #reset,
@@ -133,11 +230,172 @@ body {
     font-size: 20px;
 }
 
-.white {
-    color: var(--white);
+#equal {
+    background-color: var(--key-red-key-background-toggle);
+    box-shadow: 0px 4.5px 0px var(--key-dark-red-key-shadow);
+    color: white;
 }
 
-.red {
-    background-color: var(--red-key-background-toggle);
-    box-shadow: 0px 3.5px 1px var(--dark-red-key-shadow);
+
+/*############### TEMA 1 #################*/
+
+.tema-1 {
+    background-color: var(--background-very-dark-desaturated-blue-main);
+    color: #333;
+}
+
+.tema-1 .theme-selector,
+.tema-1 .buttons {
+    background-color: var(--background-very-dark-desaturated-blue-toggle-background-keypad);
+}
+
+.tema-1 .title,
+.tema-1 .subTitle,
+.tema-1 .labels {
+    color: white;
+}
+
+
+.tema-1 .result input {
+    background-color: var(--background-very-dark-desaturated-blue-screen);
+    color: var(--text-white)
+}
+
+.tema-1 .number,
+.tema-1 .operator,
+.tema-1 .special {
+    background-color: var(--key-light-grayish-orange-key-background);
+    color: var(--text-very-dark-grayish-blue);
+    box-shadow: 0px 4.5px 0px var(--key-grayish-orange--key-shadow);
+}
+
+.tema-1 #reset,
+.tema-1 #del {
+    background-color: var(--key-desaturated-dark-blue-key-background);
+    box-shadow: 0px 4.5px 0px var(--key-desaturated-dark-blue-key-shadow);
+    color: white;
+}
+
+.tema-1 #equal {
+    background-color: var(--key-red-key-background-toggle);
+    box-shadow: 0px 4.5px 0px var(--key-dark-red-key-shadow);
+    color: white;
+}
+
+.tema-1 #equal .clicked {
+    background-color: #F96C5B;
+    color: white;
+    box-shadow: 0px 4.5px 0px var(--key-dark-red-key-shadow);
+}
+
+
+
+/*################# TEMA 2 ####################*/
+.tema-2 {
+    background-color: var(--Two-Light-gray-main-background);
+    color: var(--Two-Very-dark-grayish-yellow);
+}
+
+.tema-2 .title,
+.tema-2 .subTitle,
+.tema-2 .labels {
+    color: var(--Two-Very-dark-grayish-yellow)
+}
+
+.tema-2 .theme-selector,
+.tema-2 .buttons {
+    background-color: var(--Two-Grayish-red-toggle-background-keypad-background);
+}
+
+.tema-2 .result input {
+    background-color: var(--text-white);
+    color: var(--Two-Very-dark-grayish-yellow);
+}
+
+.tema-2 .number,
+.tema-2 .operator,
+.tema-2 .special {
+    background-color: var(--Two-Light-gray-main-background);
+}
+
+.tema-2 #reset,
+#del {
+    background-color: var(--Two-Dark-moderate-cyan-key-background);
+}
+
+.tema-2 #reset:hover,
+.tema-2 #del:hover {
+    background-color: #5FB5BC;
+}
+
+.tema-2 #equal {
+    background-color: var(--Two-Orange-key-background-toggle);
+    box-shadow: 0px 4.5px 0px var(--key-dark-red-key-shadow);
+    color: white;
+}
+
+.tema-2 .clicked {
+    background-color: #F96C5B;
+    color: white;
+    box-shadow: 0px 4.5px 0px var(--key-dark-red-key-shadow);
+}
+
+/*##############  TEMA 3  ##################*/
+
+.tema-3 {
+    background-color: var(--three-Very-dark-violet-main-background);
+    color: var();
+}
+
+.tema-3 .theme-selector,
+.tema-3 .buttons {
+    background-color: var(--three-Very-dark-violet-toggle-background-keypad-background-screen-background);
+}
+
+.tema-3 .theme-selector input[type="radio"]:checked+label {
+    background-color: var(--three-Pure-cyan-key-background-toggle);
+}
+
+.tema-3 .title,
+.tema-3 .subTitle,
+.tema-3 .labels {
+    color: var(--three-Light-yellow)
+}
+
+.tema-3 .result input {
+    background-color: var(--three-Very-dark-violet-toggle-background-keypad-background-screen-background);
+    color: var(--three-Light-yellow)
+}
+
+.tema-3 .number,
+.tema-3 .operator,
+.tema-3 .special {
+    background-color: var(--three-Very-dark-violet-key-background);
+    color: var(--three-Light-yellow);
+    box-shadow: 0px 4.5px 0px var(--three-Dark-magenta-key-shadow);
+}
+
+.tema-3 #reset,
+.tema-3 #del {
+    background-color: var(--three-Dark-violet-key-background);
+    box-shadow: 0px 4.5px 0px var(--three-Vivid-magenta-key-shadow);
+    color: white;
+}
+
+.tema-3 #equal {
+    background-color: var(--three-Pure-cyan-key-background-toggle);
+    box-shadow: 0px 4.5px 0px var(--three-Soft-cyan-key-shadow);
+    color: var(--three-Very-dark-blue);
+}
+
+.tema-3 #equal .clicked {
+    background-color: var(--three-Soft-cyan-key-shadow);
+    color: var(--three-Very-dark-blue);
+    box-shadow: 0px 4.5px 0px var(--three-Soft-cyan-key-shadow);
+}
+
+.tema-3 #reset .clicked {
+    background-color: var(--three-Soft-cyan-key-shadow);
+    color: var(--three-Very-dark-blue);
+    box-shadow: 0px 4.5px 0px var(--three-Soft-cyan-key-shadow);
 }

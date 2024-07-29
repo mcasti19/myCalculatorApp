@@ -11,13 +11,15 @@ const elements = {
         multiplicacion: document.getElementById( '*' ),
         division: document.getElementById( '/' ),
     },
+    temas: {
+        theme1: document.getElementById( 'theme-1' ),
+        theme2: document.getElementById( 'theme-2' ),
+        theme3: document.getElementById( 'theme-3' ),
+    },
     reset: document.getElementById( 'reset' ),
     igual: document.getElementById( 'equal' ),
+    delete: document.getElementById( 'del' ),
 };
-
-
-
-
 
 let valor1 = '';
 let valor2 = '';
@@ -45,45 +47,32 @@ inputResult.addEventListener( 'input', ( e ) => {
 //* EVENTO PARA CAPTURAR EL VALOR DE LOS BOTONES AL HACERLE CLICK
 elements.numbers.forEach( element => {
     element.addEventListener( 'click', ( e ) => {
-       
-      
         if ( done ) clearAll();
         if ( !operacion && !done ) {
             valor1 = inputResult.value += e.target.textContent;
         } else {
             valor2 = inputResult.value += e.target.textContent
         }
-    } )
+    } );
+
+    element.addEventListener( 'mousedown', () => {
+        element.style.background = '#f0f0f0';
+    } );
+    element.addEventListener( 'mouseup', () => {
+        element.style.background = '';
+    } );
+
+
+
 } );
-
-
-// elements.numbers.forEach((button) => {
-//     button.addEventListener('click', (e) => {
-//         const value = e.target.textContent;
-//         if ( done ) clearAll();
-//         done = false
-//       if (valor1 && operacion) {
-//           valor2 += value;
-//           inputResult.value += value;
-//       } else {
-//           valor1 += value;
-//           inputResult.value += value
-//         }
-//     });
-//   });
-
 
 //* EVENTOS DE LOS OPERADORES +-*/
 
 elements.operators.suma.addEventListener( 'click', () => {
-    console.log( 'RESULTADO', resultado );
-    ( resultado !== null ) ? valor1 = resultado : null
     if ( valor1 ) {
-        // console.log( valor1 );
         operacion = '+';
         preResult.textContent = `${ valor1 } + `;
-        // console.log( inputResult );
-        inputResult.placeholder = inputResult.value;
+        inputResult.placeholder = valor1;
         inputResult.value = '';
     }
 } );
@@ -93,7 +82,6 @@ elements.operators.resta.addEventListener( 'click', () => {
         console.log( valor1 );
         operacion = '-';
         preResult.textContent = `${ valor1 } - `;
-        console.log( inputResult );
         inputResult.placeholder = inputResult.value;
         inputResult.value = '';
     }
@@ -104,7 +92,6 @@ elements.operators.multiplicacion.addEventListener( 'click', () => {
         console.log( valor1 );
         operacion = '*';
         preResult.textContent = `${ valor1 } * `;
-        console.log( inputResult );
         inputResult.placeholder = inputResult.value;
         inputResult.value = '';
     }
@@ -115,7 +102,6 @@ elements.operators.division.addEventListener( 'click', () => {
         console.log( valor1 );
         operacion = '/';
         preResult.textContent = `${ valor1 } / `;
-        console.log( inputResult );
         inputResult.placeholder = inputResult.value;
         inputResult.value = '';
     }
@@ -123,25 +109,56 @@ elements.operators.division.addEventListener( 'click', () => {
 
 //* EVENTO DEL BOTON IGUAL
 elements.igual.addEventListener( 'click', () => {
-    console.log({valor1, valor2,operacion});
-    if (valor1 && valor2 && operacion) {
-      resultado = realizarOperacion(valor1, valor2, operacion);
-      preResult.textContent = `${valor1} ${operacion} ${valor2} = ${resultado}`;
+    if ( valor1 && valor2 && operacion ) {
+        resultado = realizarOperacion( valor1, valor2, operacion );
+        preResult.textContent = `${ valor1 } ${ operacion } ${ valor2 } = ${ resultado }`;
         inputResult.value = resultado;
         done = true;
     }
-    console.log({valor1, valor2,operacion});
-  });
+} );
 
+
+elements.igual.addEventListener( 'mousedown', () => {
+    elements.igual.classList.add( 'clicked' );
+} )
+elements.igual.addEventListener( 'mouseup', () => {
+    elements.igual.classList.remove( 'clicked' );
+} )
 
 //* EVENTO PARA EL RESET
 elements.reset.addEventListener( 'click', clearAll );
+
+elements.reset.addEventListener( 'mousedown', () => {
+    elements.reset.classList.remove( 'white' );
+    elements.reset.classList.add( 'clicked' );
+} );
+
+elements.reset.addEventListener( 'mouseup', ( e ) => {
+    elements.reset.classList.remove( 'clicked' );
+    elements.reset.classList.add( 'white' );
+} );
+
+//* EVENTO PARA EL BOTON DEL
+elements.delete.addEventListener( 'mousedown', () => {
+    elements.delete.style.backgroundColor = '#A2B3E1';
+
+    ( resultado && inputResult.value !== null ) ? clearAll() : null
+    inputResult.value = inputResult.value.substring( 0, inputResult.value.length - 1 );
+
+    valor1 = inputResult.value;
+
+} );
+
+elements.delete.addEventListener( 'mouseup', () => {
+    elements.delete.style.backgroundColor = '';
+} );
 
 
 //*FUNCION PARA LIMPIAR EL IMPUT DEL RESULTADO Y EL PRE-RESULTADO
 function clearAll () {
     valor1 = '';
     valor2 = '';
+    resultado = '';
     done = false;
     operacion = '';
     inputResult.value = '';
@@ -153,27 +170,27 @@ function clearAll () {
 
 function realizarOperacion ( a, b, operacion ) {
     switch ( operacion ) {
-        case '+':
-            return parseFloat( a ) + parseFloat( b );
-        case '-':
-            return parseFloat( a ) - parseFloat( b );
-        case '*':
-            return parseFloat( a ) * parseFloat( b );
-        case '/':
-            return parseFloat( a ) / parseFloat( b );
-        default:
-            return '';
+        case '+': return parseFloat( a ) + parseFloat( b );
+        case '-': return parseFloat( a ) - parseFloat( b );
+        case '*': return parseFloat( a ) * parseFloat( b );
+        case '/': return parseFloat( a ) / parseFloat( b );
+        default: return '';
     }
 }
 
+//* Funciones para botones de temas
 
-// const operations = {
-//     '+': (a, b) => parseFloat(a) + parseFloat(b),
-//     '-': (a, b) => parseFloat(a) - parseFloat(b),
-//     '*': (a, b) => parseFloat(a) * parseFloat(b),
-//     '/': (a, b) => parseFloat(a) / parseFloat(b),
-//   };
-  
-//   function realizarOperacion(a, b, operacion) {
-//     return operations[operacion](a, b);
-//   }
+elements.temas.theme1.addEventListener( 'click', () => {
+    document.body.classList.remove( 'tema-2', 'tema-3' );
+    document.body.classList.add( 'tema-1' );
+} );
+
+elements.temas.theme2.addEventListener( 'click', () => {
+    document.body.classList.remove( 'tema-1', 'tema-3' );
+    document.body.classList.add( 'tema-2' );
+} );
+
+elements.temas.theme3.addEventListener( 'click', () => {
+    document.body.classList.remove( 'tema-1', 'tema-2' );
+    document.body.classList.add( 'tema-3' );
+} );
